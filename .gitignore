@@ -19,5 +19,5 @@ data/chroma_db/
 data/synthetic/
 data/pdfs/
 
-# Streamlit
-.streamlit/
+# Streamlit secrets (local only, never committed)
+.streamlit/secrets.toml

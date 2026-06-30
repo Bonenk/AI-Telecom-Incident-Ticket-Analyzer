@@ -22,8 +22,16 @@ COPY --from=builder /install /usr/local
 
 COPY app/ app/
 COPY scripts/ scripts/
-COPY .streamlit/ .streamlit/
 COPY .env.example .env.example
+
+RUN mkdir -p .streamlit && printf '%s\n' \
+    '[server]' \
+    'fileWatcherType = "poll"' \
+    'maxUploadSize = 50' \
+    '' \
+    '[browser]' \
+    'gatherUsageStats = false' \
+    > .streamlit/config.toml
 
 RUN mkdir -p data/chroma_db data/pdfs data/synthetic
 

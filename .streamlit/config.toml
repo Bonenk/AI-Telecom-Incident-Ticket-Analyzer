@@ -1,0 +1,7 @@
+[server]
+fileWatcherType = "poll"
+maxUploadSize = 50
+runOnSave = true
+
+[browser]
+gatherUsageStats = false
