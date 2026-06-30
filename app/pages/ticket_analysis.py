@@ -180,6 +180,7 @@ def render():
                 st.markdown("### Final Resolution")
                 st.markdown(final_resolution)
                 db.save_analysis(result, human_decision=decision, ticket=ticket)
+            st.cache_data.clear()
 
             cols = st.columns([1, 1, 4])
             with cols[0]:
