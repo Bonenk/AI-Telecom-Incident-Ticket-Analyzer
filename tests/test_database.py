@@ -101,5 +101,16 @@ class TestTicketDatabase:
         assert got["resolution"] == ""
         assert got["human_decision"] is None
 
+    def test_delete_open_analyses(self, db):
+        id1 = db.save_analysis({}, ticket={"ticket_id": "TKT-OPEN"})
+        id2 = db.save_analysis({"category": "Billing"}, ticket={"ticket_id": "TKT-OPEN"}, human_decision={"decision": "approved"})
+        id3 = db.save_analysis({}, ticket={"ticket_id": "TKT-OTHER"})
+        assert db.count_analyses() == 3
+        deleted = db.delete_open_analyses("TKT-OPEN")
+        assert deleted == 1
+        assert db.get_analysis(id1) is None
+        assert db.get_analysis(id2) is not None
+        assert db.get_analysis(id3) is not None
+
     def test_list_empty(self, db):
         assert db.list_analyses() == []

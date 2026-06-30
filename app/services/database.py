@@ -140,6 +140,14 @@ class TicketDatabase:
                 return d
             return None
 
+    def delete_open_analyses(self, ticket_id: str) -> int:
+        with sqlite3.connect(str(self.db_path)) as conn:
+            cur = conn.execute(
+                "DELETE FROM ticket_analyses WHERE ticket_id = ? AND (human_decision IS NULL OR human_decision = '')",
+                (ticket_id,),
+            )
+            return cur.rowcount
+
     def update_analysis(self, analysis_id: int, updates: dict) -> bool:
         allowed = {
             "human_decision", "human_feedback", "human_edited_resolution",

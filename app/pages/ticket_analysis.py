@@ -171,6 +171,9 @@ def render():
             decision = existing_decision
             db = TicketDatabase()
 
+            ticket_id = ticket.get("ticket_id", "")
+            db.delete_open_analyses(ticket_id)
+
             if decision["decision"] == "open":
                 db.save_analysis(result, ticket=ticket)
                 st.toast("Ticket saved as Open for follow-up!", icon="📂")
