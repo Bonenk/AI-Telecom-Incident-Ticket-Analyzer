@@ -185,19 +185,13 @@ def render():
                 db.save_analysis(result, human_decision=decision, ticket=ticket)
             st.cache_data.clear()
 
-            cols = st.columns([1, 1, 4])
-            with cols[0]:
-                st.download_button(
-                    " Download Report",
-                    data=_format_report(result, decision, decision.get("edited_resolution") or result.get("resolution", "")),
-                    file_name=f"ticket_{ticket.get('ticket_id', 'report')}.md",
-                    mime="text/markdown",
-                )
-            with cols[1]:
-                if st.button(" New Analysis", use_container_width=True):
-                    for key in ["workflow_result", "workflow_done", "human_decision"]:
-                        st.session_state.pop(key, None)
-                    st.rerun()
+            st.download_button(
+                " Download Report",
+                data=_format_report(result, decision, decision.get("edited_resolution") or result.get("resolution", "")),
+                file_name=f"ticket_{ticket.get('ticket_id', 'report')}.md",
+                mime="text/markdown",
+                use_container_width=False,
+            )
 
 
 def _format_report(state: dict, decision: dict, resolution: str) -> str:
