@@ -1,0 +1,31 @@
+[project]
+name = "telecom-ticket-analyzer"
+version = "0.1.0"
+description = "AI-Based Telecom Incident Ticket Analyzer with LangGraph agent workflow"
+readme = "README.md"
+requires-python = ">=3.12"
+dependencies = [
+    "streamlit>=1.40",
+    "langchain>=0.3",
+    "langgraph>=0.3",
+    "langchain-community>=0.3",
+    "langchain-openai>=0.3",
+    "langchain-anthropic>=0.3",
+    "langchain-ollama>=0.3",
+    "langchain-huggingface>=0.1",
+    "langchain-chroma>=0.2",
+    "chromadb>=0.6",
+    "boto3>=1.36",
+    "pymupdf>=1.24",
+    "fpdf2>=2.8",
+    "faker>=33",
+    "python-dotenv>=1.0",
+    "pandas>=2.2",
+    "pydantic>=2.10",
+    "markdown>=3.10",
+]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+]

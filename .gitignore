@@ -1,0 +1,23 @@
+# Python-generated files
+__pycache__/
+*.py[oc]
+build/
+dist/
+wheels/
+*.egg-info
+
+# Virtual environments
+.venv
+
+# Environment variables (contains secrets)
+.env
+
+# ChromaDB vector store
+data/chroma_db/
+
+# Generated data
+data/synthetic/
+data/pdfs/
+
+# Streamlit
+.streamlit/
